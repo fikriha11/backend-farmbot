@@ -134,10 +134,8 @@ const getImage = async (req, res) => {
     res.status(400).json({ success: false, message: "image not provide" });
   }
 };
-
 const landingPage = (req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  response = {
+  const response = {
     endpoints: [
       {
         method: "GET",
@@ -179,7 +177,7 @@ const landingPage = (req, res) => {
       },
     ],
   };
-  res.end(response);
+  res.end(JSON.stringify(response));
 };
 
 const generateTime = (time) => {
