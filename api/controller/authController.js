@@ -12,9 +12,11 @@ const findEmailUser = (email) => {
 const login = async (req, res) => {
   let existingUser;
   try {
-    existingUser = findEmailUser(req.body.email);
+    existingUser = {
+      email: findEmailUser(req.body.email),
+      name: "Fikri Haikal",
+    };
     if (!existingUser) {
-      console.log(req.body.email);
       const error = "User Not found. please check your email";
       return res.status(404).json({ success: false, message: error });
     } else if ("haikal110599" != req.body.password) {
@@ -24,7 +26,7 @@ const login = async (req, res) => {
   } catch (error) {
     return res.status(404).json({ success: false, message: error });
   }
-  const token = jwt.sign({ email: existingUser }, secretKey);
+  const token = jwt.sign({ email: existingUser["email"] }, secretKey);
   res.status(200).send({
     success: true,
     data: { existingUser, accessToken: token },
