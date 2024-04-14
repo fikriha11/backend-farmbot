@@ -7,18 +7,17 @@ const { format } = require("date-fns");
 const port = 8000;
 const app = express();
 
-// app.use(
-//   morgan((tokens, req, res) => {
-//     const timestamp = format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS");
-//     const method = tokens.method(req, res);
-//     const url = tokens.url(req, res);
-//     const status = tokens.status(req, res);
-//     const responseTime = tokens["response-time"](req, res);
+app.use(
+  morgan((tokens, req, res) => {
+    const timestamp = format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS");
+    const method = tokens.method(req, res);
+    const url = tokens.url(req, res);
+    const status = tokens.status(req, res);
+    const responseTime = tokens["response-time"](req, res);
 
-//     return `[${timestamp}] ${method} ${url} (${responseTime} ms) ${status}`;
-//   })
-// );
-
+    return `[${timestamp}] ${method} ${url} (${responseTime} ms) ${status}`;
+  })
+);
 app.use(express.static("public"));
 app.use(cors());
 app.use(express.json());
