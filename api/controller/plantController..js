@@ -129,7 +129,7 @@ const getHistoryPlant = async (req, res) => {
 const getImage = async (req, res) => {
   const nameImage = req.params.nameImage;
   try {
-    const imagePath = path.join(__dirname, "public", nameImage);
+    const imagePath = path.join(__dirname, "public", "img", nameImage);
     if (fs.existsSync(imagePath)) {
       // Mengirim file gambar sebagai respons
       res.sendFile(imagePath);
