@@ -28,7 +28,7 @@ const getPlants = async (req, res) => {
 
     // Mengurutkan data berdasarkan id_plant secara descending
     const sortedPlants = plants
-      .sort((a, b) => b.id_plant - a.id_plant)
+      .sort((a, b) => a.id_plant - b.id_plant)
       .slice(0, 20);
 
     sortedPlants.forEach((plant) => {
