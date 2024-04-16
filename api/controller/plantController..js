@@ -129,16 +129,15 @@ const getHistoryPlant = async (req, res) => {
 const getImage = async (req, res) => {
   const nameImage = req.params.nameImage;
   try {
-    const imagePath = path.join(__dirname, "public", "img", nameImage);
+    const imagePath = path.join(process.cwd(), "public", "img", nameImage);
     if (fs.existsSync(imagePath)) {
-      // Mengirim file gambar sebagai respons
       res.sendFile(imagePath);
     } else {
-      // Jika file gambar tidak ditemukan, kirim respons error
-      res.status(404).json({ success: false, message: "Image not found" });
+      res
+        .status(404)
+        .json({ success: false, message: `Image not found ${imagePath}` });
     }
   } catch (error) {
-    // Jika terjadi kesalahan lain, kirim respons error
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
