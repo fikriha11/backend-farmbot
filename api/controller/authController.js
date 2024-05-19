@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const secretKey = "d0fb440693a0acc3a72f6b3db5460c14";
 
 const findEmailUser = (email) => {
-  if (email != "fikrihaikal568@gmail.com") {
+  if (email != "admin@gmail.com") {
     return false;
   }
   return email;
@@ -14,12 +14,12 @@ const login = async (req, res) => {
   try {
     existingUser = {
       email: findEmailUser(req.body.email),
-      name: "Fikri Haikal",
+      name: "Admin",
     };
     if (!existingUser) {
       const error = "User Not found. please check your email";
       return res.status(404).json({ success: false, message: error });
-    } else if ("haikal110599" != req.body.password) {
+    } else if ("admin123" != req.body.password) {
       const error = "password is wrong";
       return res.status(404).json({ success: false, message: error });
     }
